@@ -51,7 +51,8 @@ const FriendsList = () => {
             .put(`/api/friends/${friendToEdit.id}`, friendToEdit)
                 .then(res => {
 
-                    console.log(res)
+                    setFriendsList(res.data)
+                    setIsEditing(false)
 
                 })
                 .catch(err => {
@@ -108,7 +109,7 @@ return (
         {isLoading && <div>Loading...</div>}
         {friendsList.length > 0 && friendsList.map(friend => {
 
-            return <Friend key={friend.id} friend={friend} setFriendToEdit={setFriendToEdit} setIsEditing={setIsEditing}/>
+            return <Friend key={friend.id} friend={friend} setFriendToEdit={setFriendToEdit} setIsEditing={setIsEditing} setFriendsList={setFriendsList} />
 
         })}
         <div>Add a Friend</div>
